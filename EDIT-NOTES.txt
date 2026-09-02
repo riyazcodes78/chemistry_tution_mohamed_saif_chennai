@@ -1,0 +1,10 @@
+MOHAMED SAIF CHEMISTRY HOME TUITION — BUILD NOTES
+
+Latest update:
+- Replaced the hero tutor visual with the latest supplied sticker cutout.
+- Added 10 clarity-enhanced student result sheets supplied by the client.
+- Added a responsive Student Results gallery with individual preview/lightbox.
+- Clicking any result opens a larger view and an Open Image action.
+- Result images are kept unchanged in content; the site does not invent or rewrite marks.
+- Added a privacy reminder to obtain appropriate permission before publishing identifiable student information.
+- Existing reviews remain paraphrased public-review snapshots and link to the source listing.
