@@ -1,6 +1,20 @@
 const menu=document.querySelector('.menu-btn'),nav=document.querySelector('.nav-links');
-menu?.addEventListener('click',()=>nav.classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const mobileDrawer=document.getElementById('mobileMenuDrawer');
+const mobileOverlay=document.getElementById('mobileMenuOverlay');
+const mobileClose=document.getElementById('mobileMenuClose');
+function setMobileMenu(open){
+  mobileDrawer?.classList.toggle('open',open);
+  mobileOverlay?.classList.toggle('open',open);
+  document.body.classList.toggle('menu-open',open);
+  menu?.setAttribute('aria-expanded',open?'true':'false');
+  mobileDrawer?.setAttribute('aria-hidden',open?'false':'true');
+}
+menu?.setAttribute('aria-expanded','false');
+menu?.addEventListener('click',()=>setMobileMenu(true));
+mobileClose?.addEventListener('click',()=>setMobileMenu(false));
+mobileOverlay?.addEventListener('click',()=>setMobileMenu(false));
+document.querySelectorAll('.mobile-menu-links a').forEach(a=>a.addEventListener('click',()=>setMobileMenu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setMobileMenu(false);});
 if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver(entries => entries.forEach(e => {
     if (e.isIntersecting) {
