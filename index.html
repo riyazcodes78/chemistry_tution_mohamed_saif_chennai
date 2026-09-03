@@ -35,6 +35,33 @@
     </a>
   </header>
 
+  <!-- MOBILE MENU DRAWER -->
+  <div id="mobileMenuOverlay" class="mobile-menu-overlay" aria-hidden="true"></div>
+  <aside id="mobileMenu" class="mobile-menu-drawer" aria-hidden="true" aria-label="Mobile menu">
+    <div class="mobile-menu-head">
+      <div>
+        <strong>MOHAMED <em>SAIF</em></strong>
+        <span>CHEMISTRY HOME TUITION</span>
+      </div>
+      <button id="mobileMenuClose" class="mobile-menu-close" type="button" aria-label="Close menu">×</button>
+    </div>
+    <nav class="mobile-menu-links" aria-label="Mobile navigation">
+      <a href="#home">Home <span>01</span></a>
+      <a href="#about">About Me <span>02</span></a>
+      <a href="#programs">Courses <span>03</span></a>
+      <a href="#why">Why Choose Me <span>04</span></a>
+      <a href="#student-results">Student Results <span>05</span></a>
+      <a href="#testimonials">Testimonials <span>06</span></a>
+      <a href="#contact">Contact <span>07</span></a>
+    </nav>
+    <div class="mobile-menu-contact">
+      <small>QUICK CONTACT</small>
+      <a href="tel:+919841774459"><b>PHONE</b><span>+91 98417 74459</span></a>
+      <a href="https://wa.me/919841774459?text=Hello%20Sir%2C%20I%20would%20like%20to%20enquire%20about%20Chemistry%20tuition." target="_blank" rel="noopener"><b>WHATSAPP</b><span>Message Mohamed Saif ↗</span></a>
+      <a href="#contact"><b>ADDRESS</b><span>Z Block, AD Block, Anna Nagar, Chennai — 600040</span></a>
+    </div>
+  </aside>
+
   <main id="home">
     <section class="hero">
       <div class="hero-bg"></div>
@@ -295,5 +322,44 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  (function(){
+    function initMobileMenu(){
+      const btn=document.querySelector('.menu-btn');
+      const drawer=document.getElementById('mobileMenu');
+      const overlay=document.getElementById('mobileMenuOverlay');
+      const close=document.getElementById('mobileMenuClose');
+      if(!btn||!drawer||!overlay||!close) return;
+      function openMenu(e){
+        if(e) e.preventDefault();
+        drawer.classList.add('is-open');
+        overlay.classList.add('is-open');
+        drawer.setAttribute('aria-hidden','false');
+        overlay.setAttribute('aria-hidden','false');
+        btn.setAttribute('aria-expanded','true');
+        document.documentElement.classList.add('menu-is-open');
+        document.body.classList.add('menu-is-open');
+      }
+      function closeMenu(){
+        drawer.classList.remove('is-open');
+        overlay.classList.remove('is-open');
+        drawer.setAttribute('aria-hidden','true');
+        overlay.setAttribute('aria-hidden','true');
+        btn.setAttribute('aria-expanded','false');
+        document.documentElement.classList.remove('menu-is-open');
+        document.body.classList.remove('menu-is-open');
+      }
+      btn.type='button';
+      btn.setAttribute('aria-expanded','false');
+      btn.addEventListener('click',openMenu);
+      close.addEventListener('click',closeMenu);
+      overlay.addEventListener('click',closeMenu);
+      drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeMenu)});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape') closeMenu()});
+    }
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initMobileMenu);
+    else initMobileMenu();
+  })();
+  </script>
 </body>
 </html>
